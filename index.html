@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#667154">
+<title>Allah’a Doğru</title>
+<style>
+:root{
+  --paper:#f6f0e4; --paper2:#fffaf0; --ink:#342f28; --muted:#756d62;
+  --sage:#667154; --sage2:#dce2cf; --olive:#89906d; --gold:#b69a61;
+  --brown:#765d48; --line:#ded3bf; --shadow:0 16px 50px rgba(61,52,39,.12);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:#e9e3d8;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.7}
+button{font:inherit}
+.shell{max-width:820px;margin:auto;min-height:100vh;background:var(--paper);box-shadow:var(--shadow)}
+.cover{min-height:100vh;padding:42px 28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(102,113,84,.25);border-radius:50%;width:380px;height:380px}
+.cover:before{top:-230px;right:-180px}.cover:after{bottom:-250px;left:-190px}
+.arabic{font-family:"Times New Roman",serif;font-size:34px;line-height:1.7;direction:rtl;color:var(--sage)}
+.kicker{letter-spacing:.16em;text-transform:uppercase;font:600 12px Arial,sans-serif;color:var(--brown)}
+h1{font-size:52px;line-height:1.05;margin:18px 0 12px;font-weight:500}
+.subtitle{max-width:520px;color:var(--muted);font-size:18px}
+.btn{border:0;border-radius:999px;background:var(--sage);color:white;padding:13px 22px;margin-top:24px;cursor:pointer}
+.btn.secondary{background:transparent;color:var(--sage);border:1px solid var(--sage);margin:0}
+nav{position:sticky;top:0;z-index:5;background:rgba(246,240,228,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-family:Arial,sans-serif}
+.brand{font-weight:700;color:var(--sage)} .nav-actions{display:flex;gap:8px}
+main{padding:28px 22px 70px}
+.section-title{text-align:center;margin:25px 0 18px}
+.section-title h2{font-size:34px;margin:0;font-weight:500}
+.section-title p{margin:4px 0;color:var(--muted)}
+.toc{display:grid;gap:14px}
+.toolkit-label{margin:32px 0 10px;font:700 12px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
+.toolkit-card{background:#e7eddc;border:1px solid #c4cfb1;border-radius:22px;padding:20px;cursor:pointer;box-shadow:0 5px 18px rgba(61,52,39,.05)}
+.toolkit-card .num{font:700 12px Arial,sans-serif;letter-spacing:.12em;color:var(--sage)}
+.toolkit-card h3{margin:6px 0 3px;font-size:25px}.toolkit-card p{margin:0;color:var(--muted)}
+.chapter-card{background:var(--paper2);border:1px solid var(--line);border-radius:22px;padding:20px;cursor:pointer;box-shadow:0 5px 18px rgba(61,52,39,.05)}
+.chapter-card .num{font:700 12px Arial,sans-serif;letter-spacing:.12em;color:var(--gold)}
+.chapter-card h3{margin:6px 0 3px;font-size:25px}.chapter-card p{margin:0;color:var(--muted)}
+.chapter{display:none}.chapter.active{display:block}
+.back{background:none;border:0;color:var(--sage);padding:8px 0;cursor:pointer;font:600 14px Arial,sans-serif}
+.hero{padding:26px 0 12px;text-align:center}
+.hero .num{font:700 12px Arial,sans-serif;letter-spacing:.16em;color:var(--gold)}
+.hero h2{font-size:38px;line-height:1.15;margin:8px 0}.hero p{color:var(--muted);margin:0}
+.ornament{text-align:center;color:var(--gold);letter-spacing:.5em;margin:18px 0}
+.content{max-width:680px;margin:auto}
+.content h3{font-size:25px;margin-top:34px;margin-bottom:10px;color:var(--brown)}
+.quote,.discussion,.challenge,.note{border-radius:18px;padding:18px 20px;margin:20px 0}
+.quote{background:#fbf7ed;border-left:4px solid var(--gold)}
+.quote .source{font:600 12px Arial,sans-serif;color:var(--muted);margin-top:10px}
+.discussion{background:var(--sage2);border:1px solid #cbd3ba}
+.discussion b,.challenge b{display:block;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px}
+.challenge{background:#dfe8cf;border:2px solid #718052;box-shadow:0 12px 30px rgba(102,113,84,.18);position:relative}
+.challenge:before{content:"AYIN KÜÇÜK ADIMI";display:inline-block;margin:-6px 0 10px;padding:5px 10px;border-radius:999px;background:#667154;color:white;font:700 10px Arial,sans-serif;letter-spacing:.09em}
+.challenge>b{display:none}
+.dua-hub{margin-top:38px;padding-top:28px;border-top:1px solid var(--line)}
+.dua-intro{background:#fbf7ed;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:18px}
+details{background:var(--paper2);border:1px solid var(--line);border-radius:16px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:16px 18px;font:700 15px Arial,sans-serif;color:var(--brown);display:flex;align-items:center;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-size:22px;color:var(--sage);font-weight:400}
+details[open] summary:after{content:"–"}
+.detail-body{padding:0 18px 18px}
+.dua-item{padding:14px 0;border-top:1px solid var(--line)}
+.dua-item:first-child{border-top:0}
+.dua-item .arabic{font-size:22px;margin-bottom:5px}
+.dua-item p{margin:5px 0}
+.translit{font-style:italic;color:var(--brown)}
+.repeat{display:inline-block;background:var(--sage2);border-radius:999px;padding:3px 8px;font:700 10px Arial,sans-serif;color:var(--sage);margin-top:5px}
+.source-mini{font:600 11px Arial,sans-serif;color:var(--muted);margin-top:5px}
+.note{display:none;background:#f0ebe3;border:1px dashed var(--brown);font-family:Arial,sans-serif;font-size:14px}
+body.notes-on .note{display:block}
+.small{font-size:14px;color:var(--muted)}
+.journey{display:flex;align-items:center;justify-content:center;gap:8px;margin:24px 0 34px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--sage)} .dot.future{background:transparent;border:2px solid var(--olive)}
+.line{width:52px;height:1px;background:var(--olive)}
+.footer{text-align:center;color:var(--muted);font-size:13px;padding-top:45px}
+@media(max-width:600px){
+ h1{font-size:42px}.cover{padding:30px 22px}.shell{box-shadow:none}
+ main{padding:20px 18px 60px}.hero h2{font-size:32px}.section-title h2{font-size:30px}
+ nav{padding:10px 12px}.btn.secondary{font-size:12px;padding:8px 11px}
+}
+@media print{nav,.back,.btn{display:none!important}.chapter{display:block!important;page-break-before:always}.home{display:block!important}.shell{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<section class="cover" id="cover">
+  <div class="arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+  <div class="kicker">Aylık sohbetlerimiz</div>
+  <h1>Allah’a Doğru</h1>
+  <p class="subtitle">Birlikte öğreniyor, düşünüyor ve O’na yaklaşıyoruz.</p>
+  <button class="btn" onclick="openBook()">Kitabı aç</button>
+</section>
+
+<div id="book" hidden>
+<nav>
+  <div class="brand" onclick="showHome()" style="cursor:pointer">Allah’a Doğru</div>
+  <div class="nav-actions">
+    <button class="btn secondary" onclick="toggleNotes()">EN notlar</button>
+    <button class="btn secondary" onclick="showHome()">İçindekiler</button>
+  </div>
+</nav>
+<main>
+<section class="home" id="home">
+  <div class="section-title"><div class="kicker">Sohbet yolculuğumuz</div><h2>İçindekiler</h2><p>Her buluşma, Allah’a doğru küçük bir adım.</p></div>
+  <div class="journey"><span class="dot"></span><span class="line"></span><span class="dot"></span></div>
+  <div class="toc">
+    <article class="chapter-card" onclick="showChapter('c1')"><div class="num">BÖLÜM 01</div><h3>Allah’ı Tanımak</h3><p>Er-Rahmân: Allah’ın rahmeti ve hayatımızdaki nimetleri fark etmek.</p></article>
+    <article class="chapter-card" onclick="showChapter('c2')"><div class="num">BÖLÜM 02</div><h3>Allah bize yakın</h3><p>Duanın gücü, Allah’a geri dönmek ve kendimizi değiştirmek.</p></article>
+  </div>
+  <div class="toolkit-label">Her zaman yanında</div>
+  <div class="toc">
+    <article class="toolkit-card" onclick="showToolkit()"><div class="num">DUA & ZİKİR ARAÇ KUTUSU</div><h3>Ne dua edebilirim?</h3><p>İhtiyacına göre dua seç, sabah-akşam zikirlerine ve namaz sonrası zikirlere kolayca ulaş.</p></article>
+  </div>
+  <div class="footer">Bu kitap sohbetlerimizle birlikte büyüyecek. ✦</div>
+</section>
+
+<section class="chapter" id="c1">
+<button class="back" onclick="showHome()">← İçindekilere dön</button>
+<div class="hero"><div class="num">BÖLÜM 01</div><h2>Allah’ı Tanımak</h2><p>Er-Rahmân — Rahmeti her şeyi kuşatan</p></div>
+<div class="ornament">✦ ❧ ✦</div>
+<div class="content">
+<p>Bazen Allah’la olan ilişkimizi yalnızca emirler, yasaklar ve sorumluluklar üzerinden düşünüyoruz. Ama Allah bize Kendisini güzel isimleriyle tanıtıyor. Bu sohbetlerde ilk adımımız, O’nu daha iyi tanımaya çalışmak.</p>
+<div class="quote"><div class="arabic" style="font-size:25px">وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا</div><p>“En güzel isimler Allah’ındır. O hâlde O’na o güzel isimlerle dua edin.”</p><div class="source">A‘râf 7:180</div></div>
+<h3>Er-Rahmân</h3>
+<p>Er-Rahmân, Allah’ın engin ve kuşatıcı rahmetini bize hatırlatır. Nefesimiz, ailemiz, sağlığımız, iman etme fırsatımız, yeniden başlama imkânımız… Bazen alıştığımız için nimet olduğunu unuttuğumuz şeylerin hepsi O’nun rahmetindendir.</p>
+<div class="quote"><p><strong>“Rahmetim her şeyi kuşatmıştır.”</strong></p><div class="source">A‘râf 7:156</div></div>
+<div class="discussion"><b>Birlikte düşünelim</b>Allah’ın rahmetini hayatınızda en çok nerede hissediyorsunuz? Her gün sahip olduğumuz ama artık fark etmediğimiz bir nimet ne olabilir?</div>
+<p>Allah’ın rahmetini tanımak sadece rahat zamanlarda şükretmek değildir. Hata yaptığımızda da O’ndan kaçmak yerine O’na dönmeyi öğrenmektir.</p>
+<div class="challenge"><b>🌱 Bu ayın küçük adımı</b>Her gün bir nimeti bilinçli olarak fark edin ve Allah’a onun için şükredin. Dua ederken en az bir kez Allah’a <strong>Er-Rahmân</strong> ismiyle seslenin.</div>
+<div class="note"><strong>Facilitator note (EN):</strong> Keep this first chapter gentle and relational. The goal is not to explain every theological dimension of Ar-Rahman, but to help the group notice Allah’s mercy and connect His names to everyday dua.</div>
+</div></section>
+
+<section class="chapter" id="c2">
+<button class="back" onclick="showHome()">← İçindekilere dön</button>
+<div class="hero"><div class="num">BÖLÜM 02</div><h2>Allah bize yakın</h2><p>Duanın gücü</p></div>
+<div class="ornament">✦ ❧ ✦</div>
+<div class="content">
+<p><strong>Esselâmu aleyküm ve rahmetullahi ve berekâtühü.</strong></p>
+<p><strong>Bismillahirrahmanirrahim.</strong></p>
+<div class="quote"><p><em>Allahümme innî es’elüke ilmen nâfi‘an, ve rızkan tayyiben, ve amelen mütekabbelen.</em></p><p>“Allah’ım, Senden faydalı ilim, güzel ve helal rızık ve kabul edilmiş amel istiyorum.”</p></div>
+<p>Geçen buluşmamızda Allah’ın güzel isimlerinden <strong>Er-Rahmân’ı</strong> ve Allah’ın rahmetini konuştuk. Bugün bunun doğal bir devamına bakıyoruz: Allah’la ilişkimiz ve dua.</p>
+<div class="discussion"><b>Birlikte düşünelim</b>Çocukluğunuzda size Allah anlatılırken hangisini daha çok duydunuz: Allah’ın çok merhametli, seven ve bağışlayan olduğunu mu, yoksa yanlış bir şey yaptığımızda bizi cezalandıracağını mı? Sizce bu, Allah’a bakışınızı nasıl etkiledi?</div>
+
+<h3>Yasak mı, koruma mı?</h3>
+<p>Bazen din bize yalnızca “bunu yapma, bu haram” şeklinde anlatılmış olabilir. Oysa bizi yaratan Allah, bizi bizden daha iyi bilir. Emir ve sınırlarının O’nun ilminden ve hikmetinden geldiğine inanırız.</p>
+<p>Mesela alkol ilk bakışta eğlence gibi görülebilir; ama bağımlılık, kontrol kaybı, kazalar, şiddet ve ailelerin zarar görmesi gibi sonuçları olabilir. Evlilik dışı yakın ilişkilerdeki sınırlar da dışarıdan kısıtlama gibi görülebilir; İslam ise yakınlığı bağlılık ve sorumlulukla birlikte ele alır.</p>
+<p>Her hükmün bütün hikmetlerini bildiğimizi iddia etmeyiz. Bazen bir kısmını görürüz, bazen görmeyiz. Bu yüzden yalnızca “Allah neden bunu yasaklıyor?” değil, <strong>“Allah beni neye karşı koruyor olabilir?”</strong> diye de sorabiliriz.</p>
+<div class="discussion"><b>Birlikte düşünelim</b>İslam’da eskiden sadece bir kısıtlama gibi gördüğünüz ama yaşınız ilerledikçe arkasındaki hikmeti daha iyi anlamaya başladığınız bir şey oldu mu?</div>
+
+<h3>Allah’ın bize olan merhameti</h3>
+<p>Peygamberimiz ﷺ, çocuğunu bulup bağrına basan bir anneyi gördüğünde sahabeye bu annenin çocuğunu ateşe atıp atmayacağını sordu. “Hayır” dediklerinde, Allah’ın kullarına bu annenin çocuğuna olan merhametinden daha merhametli olduğunu bildirdi.</p>
+<p>Bu, yaptıklarımızın önemsiz olduğu anlamına gelmez. <strong>Hata yaptığımda kaçacağım değil, geri döneceğim bir Rabbim var</strong> demektir.</p>
+
+<h3>Hiçbirimiz günahsız değiliz</h3>
+<div class="quote"><p>“Âdemoğlunun hepsi hata eder. Hata edenlerin en hayırlıları ise tövbe edenlerdir.”</p><div class="source">Tirmizî</div></div>
+<p>İyi bir insan olmak çok değerlidir; fakat iyi olmak günahsız olmak değildir. Amaç kusursuz olmak değil, eksiklerimizi fark edip tekrar tekrar Allah’a dönmektir.</p>
+
+<h3>Allah’a geri dönmek</h3>
+<div class="quote"><p>“Ben kulumun Benim hakkımdaki zannı üzereyim. Beni andığında onunla beraberim. Eğer Beni kendi içinde anarsa, Ben de onu kendi katımda anarım; eğer Beni bir topluluk içinde anarsa, Ben de onu onlardan daha hayırlı bir topluluk içinde anarım. Eğer Bana bir karış yaklaşırsa, Ben ona bir arşın yaklaşırım; Bana bir arşın yaklaşırsa, Ben ona bir kulaç yaklaşırım. Eğer Bana yürüyerek gelirse, Ben ona koşarak giderim.”</p><div class="source">Hadis-i kudsî · Sahih-i Buhârî ve Sahih-i Müslim</div></div>
+<p>Allah, Kendisine dönmemiz için önce kusursuz olmamızı beklemiyor. Belki ilk adım dua etmek, namaza başlamak, bir günahtan uzaklaşmaya çalışmak ya da içten bir “Estağfirullah” demektir.</p>
+
+<h3>“Ben yakınım”</h3>
+<div class="quote"><div class="arabic" style="font-size:24px">فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ</div><p>“Kullarım sana Beni sorduklarında bilsinler ki Ben yakınım. Bana dua ettiğinde dua edenin duasına karşılık veririm.”</p><div class="source">Bakara 2:186</div></div>
+<p>Allah’la konuşmak için kusursuz Arapça veya uzun ezberlenmiş dualar gerekmiyor. Kendi dilimizle, kendi kelimelerimizle O’na içimizi açabiliriz.</p>
+
+<h3>Allah’tan ne istiyoruz?</h3>
+<p>Sağlık, aile, çocuklar, iş ve sıkıntılarımız için dua ederiz. Peki Allah’tan ne kadar sık <strong>bizim içimizdeki bir şeyi değiştirmesini</strong> istiyoruz?</p>
+<div class="discussion"><b>Birlikte düşünelim</b>Dua ederken daha çok hayatımızdaki şartların değişmesini mi istiyoruz, yoksa kendimizin değişmesini mi? Allah’tan kendimizde hangi özellikleri değiştirmemize yardım etmesini isteyebiliriz?</div>
+<p>“Allah’ım, beni daha sabırlı yap. Namazımı düzenli kılmama yardım et. Dilimi koru. Beni gıybetten uzaklaştır. Kendimde göremediğim hatalarımı bana göster.”</p>
+
+<h3>Dilimizi korumak</h3>
+<p>“Kilo almışsın”, “Hamile misin?”, “Ne zaman çocuk yapacaksınız?” gibi bir söz bizim için küçük olabilir ama karşımızdakinin taşıdığı bir yaraya dokunabilir. İyi niyet, sözün incitmeyeceği anlamına gelmez.</p>
+<div class="quote"><p>“Allah’a ve ahiret gününe iman eden ya hayır söylesin ya da sussun.”</p><div class="source">Sahih-i Buhârî ve Sahih-i Müslim</div></div>
+<p>Güzel ahlakın bir parçası yalnızca ne söyleyeceğimizi değil, bazen <strong>ne zaman susacağımızı</strong> da bilmektir.</p>
+
+<h3>İyiliği ibadete dönüştürmek</h3>
+<div class="quote"><p>“Ameller niyetlere göredir.”</p><div class="source">Sahih-i Buhârî ve Sahih-i Müslim</div></div>
+<p>Yardımsever olmak, ailemize bakmak, bir arkadaşımızın yanında olmak zaten güzeldir. Niyetimizi Allah’a bağladığımızda günlük iyiliklerimiz de O’na yaklaşmanın bir yolu hâline gelebilir.</p>
+
+<div class="discussion"><b>Sessizce düşünelim</b>Allah bu ay kendinizde bir şeyi değiştirmenize yardım etseydi, bunun ne olmasını isterdiniz? Cevabınız sizinle Allah arasında kalsın.</div>
+
+<div class="challenge"><b>🌱 Bu ayın küçük adımı</b><strong>İki dua seçin.</strong><br><br>1. Allah’tan hayatınızda değiştirmesini istediğiniz bir şey.<br>2. Allah’tan kendi içinizde değiştirmeye yardım etmesini istediğiniz bir şey.<br><br>Mümkünse her gün bu iki duayı edin. Nereden başlayacağınızı bilmiyorsanız aşağıdaki <strong>Dua Rehberi</strong>nden size en çok dokunan bir veya iki duayı seçebilirsiniz.<br><br>Ay sonunda “İstediğim oldu mu?”dan önce, <strong>“Allah’la düzenli konuşmak O’nunla ilişkimde neyi değiştirdi?”</strong> diye düşünün.</div>
+
+<div class="dua-hub" id="dua-rehberi">
+<div class="section-title"><div class="kicker">Kaydet · Aç · Seç</div><h2>Dua Rehberi</h2><p>Ne söyleyeceğimi bilmiyorum dediğin günler için küçük bir dua ve zikir rehberi.</p></div>
+
+<div class="dua-intro">
+<p><strong>Dua için “mükemmel” kelimeler bulmanız gerekmiyor.</strong> Kur’an ve sünnette geçen duaları okuyabilir, sonra Allah’a Türkçe veya kendi dilinizde kalbinizden geçenleri söyleyebilirsiniz. Aşağıdaki başlıkları açın ve o gün size en çok dokunan duayı seçin.</p>
+<p class="small">Kur’an ve hadis kaynaklı dualar kaynaklarıyla belirtilmiştir. “Kendi sözlerinle” yazan örnekler ise ezberlenmesi gereken özel metinler değil; duaya başlamayı kolaylaştıran cümlelerdir.</p>
+</div>
+
+<details>
+<summary>🌿 Kendimi güzelleştirmek istiyorum</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">اللَّهُمَّ اهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ</div><p class="translit">Allahümme’hdinî li-ahsenil-ahlâk, lâ yehdî li-ahsenihâ illâ ente.</p><p>Allah’ım, beni en güzel ahlâka yönelt. En güzel ahlâka ancak Sen yöneltebilirsin.</p><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, dilimi koru. Daha sabırlı, yumuşak ve anlayışlı olmama yardım et. Kendimde göremediğim hatalarımı bana göster ve onları düzeltmeyi nasip et.</p></div>
+</div></details>
+
+<details>
+<summary>🤍 Allah’a daha yakın olmak istiyorum</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</div><p class="translit">Allahümme a‘innî alâ zikrike ve şükrike ve husni ibâdetik.</p><p>Allah’ım, Seni zikretmek, Sana şükretmek ve Sana güzelce ibadet etmek için bana yardım et.</p><div class="source-mini">Ebû Dâvûd · Nesâî</div></div>
+<div class="dua-item"><div class="arabic">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي</div><p class="translit">Rabbi’c‘alnî mukîmes-salâti ve min zürriyyetî.</p><p>Rabbim, beni ve soyumdan gelenleri namazı dosdoğru kılanlardan eyle.</p><div class="source-mini">Kur’an · İbrahim 14:40</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, namazı bana sevdir. Kalbimi Sana bağla. Seni yalnızca zor zamanlarda değil, rahat zamanlarımda da hatırlamayı nasip et.</p></div>
+</div></details>
+
+<details>
+<summary>🕊️ Bir günahtan uzaklaşmak ve tövbe etmek istiyorum</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ</div><p class="translit">Rabbiğfir lî ve tüb aleyye, inneke entet-Tevvâbur-Rahîm.</p><p>Rabbim, beni bağışla ve tövbemi kabul et. Şüphesiz Sen tövbeleri çokça kabul eden, çok merhametli olansın.</p><div class="source-mini">Ebû Dâvûd · Tirmizî</div></div>
+<div class="dua-item"><div class="arabic">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</div><p class="translit">Estağfirullâhe ve etûbü ileyh.</p><p>Allah’tan bağışlanma diliyor ve O’na tövbe ediyorum.</p><div class="source-mini">Peygamber ﷺ bunu çokça söylerdi · Sahih-i Buhârî</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, bu günahı bırakmakta zorlanıyorum. Onu bana çirkin göster, ondan uzaklaşmayı kolaylaştır ve düştüğümde Sana geri dönmekten vazgeçirmeme.</p></div>
+</div></details>
+
+<details>
+<summary>👶 Çocuklarım ve ailem için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</div><p class="translit">Rabbenâ heb lenâ min ezvâcinâ ve zürriyyâtinâ kurrate a‘yünin vec‘alnâ lil-müttakîne imâmâ.</p><p>Rabbimiz, eşlerimizi ve çocuklarımızı bize göz aydınlığı kıl ve bizi takvâ sahiplerine örnek eyle.</p><div class="source-mini">Kur’an · Furkân 25:74</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, çocuklarımı koru; kalplerine iman sevgisi ver. Onlara güzel örnek olabilmeyi, onları sevgiyle yönlendirmeyi ve Sana emanet olduklarını unutmamayı bana nasip et.</p></div>
+</div></details>
+
+<details>
+<summary>🌧️ Kaygı, sıkıntı ve zor zamanlar için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ</div><p class="translit">Hasbunallâhu ve ni‘mel-vekîl.</p><p>Allah bize yeter. O ne güzel vekildir.</p><div class="source-mini">Kur’an · Âl-i İmrân 3:173</div></div>
+<div class="dua-item"><div class="arabic">لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</div><p class="translit">Lâ ilâhe illâ ente subhâneke innî küntü minez-zâlimîn.</p><p>Senden başka ilâh yoktur. Seni tenzih ederim. Gerçekten ben kendime haksızlık edenlerden oldum.</p><div class="source-mini">Kur’an · Enbiyâ 21:87</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, şu an ne yapacağımı bilmiyorum. Kalbime sakinlik ver, benim için hayırlı olanı kolaylaştır ve kontrol edemediğim şeyleri Sana bırakabilmeyi öğret.</p></div>
+</div></details>
+
+<details>
+<summary>🌸 Sağlık, iyilik ve dünya-ahiret hayrı için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ</div><p class="translit">Allahümme innî es’elükel-afve vel-âfiyete fid-dünyâ vel-âhireh.</p><p>Allah’ım, Senden dünya ve ahirette af ve esenlik diliyorum.</p><div class="source-mini">Ebû Dâvûd · İbn Mâce</div></div>
+<div class="dua-item"><div class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div><p class="translit">Rabbenâ âtinâ fid-dünyâ haseneten ve fil-âhireti haseneten ve kınâ azâben-nâr.</p><p>Rabbimiz, bize dünyada iyilik, ahirette de iyilik ver ve bizi ateş azabından koru.</p><div class="source-mini">Kur’an · Bakara 2:201 · Peygamberimizin ﷺ sık yaptığı dualardandır</div></div>
+</div></details>
+
+<details>
+<summary>🤲 Anne-babam için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div><p class="translit">Rabbirhamhumâ kemâ rabbeyânî sağîrâ.</p><p>Rabbim, onlar beni küçükken nasıl yetiştirdilerse Sen de onlara merhamet et.</p><div class="source-mini">Kur’an · İsrâ 17:24</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, anne-babama iyilik etmeyi, onlara karşı sabırlı ve yumuşak olmayı nasip et. Hayattalarsa onları koru; vefat ettilerse onlara rahmet ve mağfiret eyle.</p></div>
+</div></details>
+
+<details>
+<summary>🌅 Sabah ve akşamdan birkaç zikir</summary>
+<div class="detail-body">
+<div class="dua-item"><p><strong>İhlâs, Felak ve Nâs sûreleri</strong></p><p>Sabah ve akşam her birini üç kez okumak sünnette tavsiye edilmiştir.</p><span class="repeat">3× sabah · 3× akşam</span><div class="source-mini">Ebû Dâvûd · Tirmizî</div></div>
+<div class="dua-item"><div class="arabic">بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ</div><p class="translit">Bismillâhillezî lâ yadurru ma‘asmihî şey’ün fil-ardı ve lâ fis-semâi ve hüves-Semî‘ul-Alîm.</p><p>Allah’ın adıyla; O’nun adıyla yerde ve gökte hiçbir şey zarar veremez. O, hakkıyla işiten ve bilendir.</p><span class="repeat">3× sabah · 3× akşam</span><div class="source-mini">Ebû Dâvûd · Tirmizî</div></div>
+<div class="dua-item"><div class="arabic">رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ نَبِيًّا</div><p class="translit">Radîtu billâhi Rabben, ve bil-İslâmi dînen, ve bi-Muhammedin nebiyyâ.</p><p>Rab olarak Allah’tan, din olarak İslam’dan ve peygamber olarak Muhammed’den ﷺ razıyım.</p><span class="repeat">3× sabah · 3× akşam</span><div class="source-mini">Ebû Dâvûd</div></div>
+</div></details>
+
+<details>
+<summary>🕌 Namazdan sonra</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">أَسْتَغْفِرُ اللَّهَ</div><p class="translit">Estağfirullah.</p><p>Allah’tan bağışlanma dilerim.</p><span class="repeat">3×</span><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><div class="arabic">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</div><p class="translit">Allahümme entes-Selâm ve minkes-selâm, tebârekte yâ Zel-Celâli vel-İkrâm.</p><p>Allah’ım, Sen Selâm’sın; selâmet Sendendir. Ey celâl ve ikram sahibi, Sen ne yücesin.</p><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><p><strong>33× Subhânallah · 33× Elhamdülillah · 33× Allahu ekber</strong></p><p>Ardından yüzü tamamlamak için: <em>Lâ ilâhe illallâhu vahdehû lâ şerîke leh, lehül-mülkü ve lehül-hamdü ve hüve alâ külli şey’in kadîr.</em></p><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><div class="arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</div><p class="translit">Allahümme a‘innî alâ zikrike ve şükrike ve husni ibâdetik.</p><p>Allah’ım, Seni zikretmek, Sana şükretmek ve Sana güzelce ibadet etmek için bana yardım et.</p><div class="source-mini">Peygamber ﷺ Muâz’a bunu her namazın ardından bırakmamasını öğütledi · Ebû Dâvûd · Nesâî</div></div>
+</div></details>
+
+</div>
+
+<h3>Kapanış</h3>
+<p>Bu sohbetlerde bir konu anlatıldığında “Bunu filancanın duyması lazım” diye düşünmek yerine, <strong>“Allah burada bana ne öğretmek istiyor?”</strong> diye soralım.</p>
+<p>Biz kendimizi düzeltip sonra Allah’a gelmiyoruz. <strong>Allah’a yaklaşarak düzeliyoruz.</strong></p>
+<div class="quote"><p>Allah’ım, Seni daha iyi tanımayı ve Sana güvenmeyi bize nasip et. Bizi Sana tekrar tekrar dönen kullarından eyle. Kalplerimizi, niyetlerimizi ve sözlerimizi güzelleştir. Dilimizi insanları incitmekten ve gıybetten koru. Kendi kusurlarımızı fark etmeyi ve onları düzeltmek için çabalamayı bize nasip et. Yaptığımız iyiliklere ihlas ver. Namazı kalplerimize sevdir ve bizi Sana yaklaştır. Sesli söylediğimiz dualarımızı da, Senden başka hiç kimsenin bilmediği dualarımızı da kabul eyle. Âmin.</p></div>
+<div class="note"><strong>Facilitator note (EN):</strong> The thread is mercy → trust → returning to Allah → dua → self-change. Keep the examples universal so nobody feels singled out.</div>
+</div></section>
+
+<section class="chapter" id="toolkit">
+<button class="back" onclick="showHome()">← İçindekilere dön</button>
+<div class="hero"><div class="num">ARAÇ KUTUSU</div><h2>Dua & Zikir Rehberi</h2><p>İhtiyacına göre aç, oku ve seç.</p></div>
+<div class="ornament">✦ ❧ ✦</div>
+<div class="content">
+
+<div class="section-title"><div class="kicker">Kaydet · Aç · Seç</div><h2>Dua Rehberi</h2><p>Ne söyleyeceğimi bilmiyorum dediğin günler için küçük bir dua ve zikir rehberi.</p></div>
+
+<div class="dua-intro">
+<p><strong>Dua için “mükemmel” kelimeler bulmanız gerekmiyor.</strong> Kur’an ve sünnette geçen duaları okuyabilir, sonra Allah’a Türkçe veya kendi dilinizde kalbinizden geçenleri söyleyebilirsiniz. Aşağıdaki başlıkları açın ve o gün size en çok dokunan duayı seçin.</p>
+<p class="small">Kur’an ve hadis kaynaklı dualar kaynaklarıyla belirtilmiştir. “Kendi sözlerinle” yazan örnekler ise ezberlenmesi gereken özel metinler değil; duaya başlamayı kolaylaştıran cümlelerdir.</p>
+</div>
+
+<details>
+<summary>🌿 Kendimi güzelleştirmek istiyorum</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">اللَّهُمَّ اهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ</div><p class="translit">Allahümme’hdinî li-ahsenil-ahlâk, lâ yehdî li-ahsenihâ illâ ente.</p><p>Allah’ım, beni en güzel ahlâka yönelt. En güzel ahlâka ancak Sen yöneltebilirsin.</p><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, dilimi koru. Daha sabırlı, yumuşak ve anlayışlı olmama yardım et. Kendimde göremediğim hatalarımı bana göster ve onları düzeltmeyi nasip et.</p></div>
+</div></details>
+
+<details>
+<summary>🤍 Allah’a daha yakın olmak istiyorum</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</div><p class="translit">Allahümme a‘innî alâ zikrike ve şükrike ve husni ibâdetik.</p><p>Allah’ım, Seni zikretmek, Sana şükretmek ve Sana güzelce ibadet etmek için bana yardım et.</p><div class="source-mini">Ebû Dâvûd · Nesâî</div></div>
+<div class="dua-item"><div class="arabic">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي</div><p class="translit">Rabbi’c‘alnî mukîmes-salâti ve min zürriyyetî.</p><p>Rabbim, beni ve soyumdan gelenleri namazı dosdoğru kılanlardan eyle.</p><div class="source-mini">Kur’an · İbrahim 14:40</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, namazı bana sevdir. Kalbimi Sana bağla. Seni yalnızca zor zamanlarda değil, rahat zamanlarımda da hatırlamayı nasip et.</p></div>
+</div></details>
+
+<details>
+<summary>🕊️ Bir günahtan uzaklaşmak ve tövbe etmek istiyorum</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ</div><p class="translit">Rabbiğfir lî ve tüb aleyye, inneke entet-Tevvâbur-Rahîm.</p><p>Rabbim, beni bağışla ve tövbemi kabul et. Şüphesiz Sen tövbeleri çokça kabul eden, çok merhametli olansın.</p><div class="source-mini">Ebû Dâvûd · Tirmizî</div></div>
+<div class="dua-item"><div class="arabic">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</div><p class="translit">Estağfirullâhe ve etûbü ileyh.</p><p>Allah’tan bağışlanma diliyor ve O’na tövbe ediyorum.</p><div class="source-mini">Peygamber ﷺ bunu çokça söylerdi · Sahih-i Buhârî</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, bu günahı bırakmakta zorlanıyorum. Onu bana çirkin göster, ondan uzaklaşmayı kolaylaştır ve düştüğümde Sana geri dönmekten vazgeçirmeme.</p></div>
+</div></details>
+
+<details>
+<summary>👶 Çocuklarım ve ailem için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</div><p class="translit">Rabbenâ heb lenâ min ezvâcinâ ve zürriyyâtinâ kurrate a‘yünin vec‘alnâ lil-müttakîne imâmâ.</p><p>Rabbimiz, eşlerimizi ve çocuklarımızı bize göz aydınlığı kıl ve bizi takvâ sahiplerine örnek eyle.</p><div class="source-mini">Kur’an · Furkân 25:74</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, çocuklarımı koru; kalplerine iman sevgisi ver. Onlara güzel örnek olabilmeyi, onları sevgiyle yönlendirmeyi ve Sana emanet olduklarını unutmamayı bana nasip et.</p></div>
+</div></details>
+
+<details>
+<summary>🌧️ Kaygı, sıkıntı ve zor zamanlar için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ</div><p class="translit">Hasbunallâhu ve ni‘mel-vekîl.</p><p>Allah bize yeter. O ne güzel vekildir.</p><div class="source-mini">Kur’an · Âl-i İmrân 3:173</div></div>
+<div class="dua-item"><div class="arabic">لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</div><p class="translit">Lâ ilâhe illâ ente subhâneke innî küntü minez-zâlimîn.</p><p>Senden başka ilâh yoktur. Seni tenzih ederim. Gerçekten ben kendime haksızlık edenlerden oldum.</p><div class="source-mini">Kur’an · Enbiyâ 21:87</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, şu an ne yapacağımı bilmiyorum. Kalbime sakinlik ver, benim için hayırlı olanı kolaylaştır ve kontrol edemediğim şeyleri Sana bırakabilmeyi öğret.</p></div>
+</div></details>
+
+<details>
+<summary>🌸 Sağlık, iyilik ve dünya-ahiret hayrı için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ</div><p class="translit">Allahümme innî es’elükel-afve vel-âfiyete fid-dünyâ vel-âhireh.</p><p>Allah’ım, Senden dünya ve ahirette af ve esenlik diliyorum.</p><div class="source-mini">Ebû Dâvûd · İbn Mâce</div></div>
+<div class="dua-item"><div class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div><p class="translit">Rabbenâ âtinâ fid-dünyâ haseneten ve fil-âhireti haseneten ve kınâ azâben-nâr.</p><p>Rabbimiz, bize dünyada iyilik, ahirette de iyilik ver ve bizi ateş azabından koru.</p><div class="source-mini">Kur’an · Bakara 2:201 · Peygamberimizin ﷺ sık yaptığı dualardandır</div></div>
+</div></details>
+
+<details>
+<summary>🤲 Anne-babam için</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div><p class="translit">Rabbirhamhumâ kemâ rabbeyânî sağîrâ.</p><p>Rabbim, onlar beni küçükken nasıl yetiştirdilerse Sen de onlara merhamet et.</p><div class="source-mini">Kur’an · İsrâ 17:24</div></div>
+<div class="dua-item"><p><strong>Kendi sözlerinle:</strong> Allah’ım, anne-babama iyilik etmeyi, onlara karşı sabırlı ve yumuşak olmayı nasip et. Hayattalarsa onları koru; vefat ettilerse onlara rahmet ve mağfiret eyle.</p></div>
+</div></details>
+
+<details>
+<summary>🌅 Sabah ve akşamdan birkaç zikir</summary>
+<div class="detail-body">
+<div class="dua-item"><p><strong>İhlâs, Felak ve Nâs sûreleri</strong></p><p>Sabah ve akşam her birini üç kez okumak sünnette tavsiye edilmiştir.</p><span class="repeat">3× sabah · 3× akşam</span><div class="source-mini">Ebû Dâvûd · Tirmizî</div></div>
+<div class="dua-item"><div class="arabic">بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ</div><p class="translit">Bismillâhillezî lâ yadurru ma‘asmihî şey’ün fil-ardı ve lâ fis-semâi ve hüves-Semî‘ul-Alîm.</p><p>Allah’ın adıyla; O’nun adıyla yerde ve gökte hiçbir şey zarar veremez. O, hakkıyla işiten ve bilendir.</p><span class="repeat">3× sabah · 3× akşam</span><div class="source-mini">Ebû Dâvûd · Tirmizî</div></div>
+<div class="dua-item"><div class="arabic">رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ نَبِيًّا</div><p class="translit">Radîtu billâhi Rabben, ve bil-İslâmi dînen, ve bi-Muhammedin nebiyyâ.</p><p>Rab olarak Allah’tan, din olarak İslam’dan ve peygamber olarak Muhammed’den ﷺ razıyım.</p><span class="repeat">3× sabah · 3× akşam</span><div class="source-mini">Ebû Dâvûd</div></div>
+</div></details>
+
+<details>
+<summary>🕌 Namazdan sonra</summary>
+<div class="detail-body">
+<div class="dua-item"><div class="arabic">أَسْتَغْفِرُ اللَّهَ</div><p class="translit">Estağfirullah.</p><p>Allah’tan bağışlanma dilerim.</p><span class="repeat">3×</span><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><div class="arabic">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</div><p class="translit">Allahümme entes-Selâm ve minkes-selâm, tebârekte yâ Zel-Celâli vel-İkrâm.</p><p>Allah’ım, Sen Selâm’sın; selâmet Sendendir. Ey celâl ve ikram sahibi, Sen ne yücesin.</p><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><p><strong>33× Subhânallah · 33× Elhamdülillah · 33× Allahu ekber</strong></p><p>Ardından yüzü tamamlamak için: <em>Lâ ilâhe illallâhu vahdehû lâ şerîke leh, lehül-mülkü ve lehül-hamdü ve hüve alâ külli şey’in kadîr.</em></p><div class="source-mini">Sahih-i Müslim</div></div>
+<div class="dua-item"><div class="arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</div><p class="translit">Allahümme a‘innî alâ zikrike ve şükrike ve husni ibâdetik.</p><p>Allah’ım, Seni zikretmek, Sana şükretmek ve Sana güzelce ibadet etmek için bana yardım et.</p><div class="source-mini">Peygamber ﷺ Muâz’a bunu her namazın ardından bırakmamasını öğütledi · Ebû Dâvûd · Nesâî</div></div>
+</div></details>
+
+
+</div>
+</section>
+
+</main>
+</div>
+</div>
+<script>
+function openBook(){document.getElementById('cover').style.display='none';document.getElementById('book').hidden=false;showHome()}
+function showHome(){document.getElementById('home').style.display='block';document.querySelectorAll('.chapter').forEach(x=>x.classList.remove('active'));window.scrollTo(0,0)}
+function showChapter(id){document.getElementById('home').style.display='none';document.querySelectorAll('.chapter').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function showToolkit(){document.getElementById('home').style.display='none';document.querySelectorAll('.chapter').forEach(x=>x.classList.remove('active'));document.getElementById('toolkit').classList.add('active');window.scrollTo(0,0)}
+function toggleNotes(){document.body.classList.toggle('notes-on')}
+</script>
+</body>
+</html>
