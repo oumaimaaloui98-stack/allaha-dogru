@@ -83,16 +83,17 @@ body.notes-on .note{display:block}
 }
 @media print{nav,.back,.btn{display:none!important}.chapter{display:block!important;page-break-before:always}.home{display:block!important}.shell{box-shadow:none}}
 .lesson-art{max-width:680px;margin:8px auto 20px;background:linear-gradient(140deg,#f1eddd,#e5ebd9);border:1px solid #ded3bf;border-radius:22px;overflow:hidden}.lesson-art svg{width:100%;height:auto;display:block}.art-middle{margin:28px auto}.scenario summary{gap:12px;justify-content:flex-start}.scenario summary:after{margin-left:auto}.scenario-num{color:var(--sage);font-size:12px}.content ol,.content ul{padding-left:24px}.content li{margin:10px 0}.content .challenge h3{margin:4px 0 12px;color:var(--sage)}
+.language-picker{position:fixed;top:12px;right:12px;z-index:30;display:flex;align-items:center;gap:6px;background:rgba(255,250,240,.97);border:1px solid var(--line);border-radius:100px;padding:6px 9px;box-shadow:0 5px 20px rgba(0,0,0,.09);font:12px Arial,sans-serif}.language-picker label{font-weight:700;color:var(--sage)}.language-picker select{border:0;background:transparent;color:var(--ink);font:600 13px Arial,sans-serif;max-width:140px;cursor:pointer}.cover{padding-top:82px}.language-hint{font:12px Arial,sans-serif;color:var(--muted);text-align:center;max-width:420px;margin:12px auto}.language-picker select:focus-visible{outline:2px solid var(--sage);border-radius:6px}@media(max-width:600px){.language-picker{top:8px;right:8px}.language-picker label{display:none}} 
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="language-picker"><label for="language-choice">🌐 Language</label><select id="language-choice" aria-label="Choose website language" onchange="changeLanguage(this.value)"><option value="tr">🇹🇷 Türkçe</option><option value="en">🇬🇧 English</option><option value="nl">🇳🇱 Nederlands</option><option value="ar">🇸🇦 العربية</option></select></div><div class="shell">
 <section class="cover" id="cover">
   <div class="arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
   <div class="kicker">Aylık sohbetlerimiz</div>
   <h1>Allah’a Doğru</h1>
   <p class="subtitle">Birlikte öğreniyor, düşünüyor ve O’na yaklaşıyoruz.</p>
-  <button class="btn" onclick="openBook()">Kitabı aç</button>
+  <button class="btn" onclick="openBook()">Kitabı aç</button><p class="language-hint">🌐 Other languages use automatic translation. Qur’an and hadith wording should be checked against the original.</p>
 </section>
 
 <div id="book" hidden>
@@ -444,6 +445,13 @@ body.notes-on .note{display:block}
 </div>
 </div>
 <script>
+// The source text remains Turkish. Non-Turkish options open a whole-page
+// automatic translation; no unreviewed translation is presented as authoritative.
+function changeLanguage(lang){
+ if(lang==='tr'){window.location.href='https://oumaimaaloui98-stack.github.io/allaha-dogru/';return;}
+ const url='https://oumaimaaloui98-stack.github.io/allaha-dogru/';
+ window.location.href='https://translate.google.com/translate?sl=tr&tl='+encodeURIComponent(lang)+'&u='+encodeURIComponent(url);
+}
 function openBook(){document.getElementById('cover').style.display='none';document.getElementById('book').hidden=false;showHome()}
 function showHome(){document.getElementById('home').style.display='block';document.querySelectorAll('.chapter').forEach(x=>x.classList.remove('active'));window.scrollTo(0,0)}
 function showChapter(id){document.getElementById('home').style.display='none';document.querySelectorAll('.chapter').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
